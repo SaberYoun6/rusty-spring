@@ -4,3 +4,6 @@ version = "0.1.0"
 authors = ["-- <samuel.young.103@gmail.com>"]
 
 [dependencies]
+gl = "0.6.3"
+libc = "0.2.27"
+os_type ="2.0.0"
