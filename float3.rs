@@ -81,7 +81,7 @@ impl float3 for float3 {
        let float3: y =f[1];
        let float3: z =f[2];
        let *mut Self : fi;
-        return fi;
+        return *fi;
     }
     fn operator_add(float3: f, Self : f)-> float3 {
         return  float3(x+f.x, y+f.y, z+f.z);
