@@ -18,13 +18,25 @@
  // usually used to represent a vector in space as x/y/z.
  //
  struct float3 {
-    f64: x,
+    x : f64,
+    y : f64,
+    z : f64,
+    f : f64,,
     f:[f64;3],
-    float3: f, 
-    i64: t,
+    f: float3,
+    fwd_vector : float3,
+    bot_vector : float3,
+    rght_vector : float3,
+    zero_vector : float3,
+    ones_vector : float3,
+    x_y_vector : float3,
+    x_z_vector : float3,
+    y_z_vector : float3,
+    t: i64 ,
  }
 impl float3 for float3 {
     default float3: fwd_vector  = vec![0.0,0.0,1.0];
+    default float3: bot_vector  = vec![0.0,1.0,0.0];
     default float3: rght_vector = vec![1.0,0.0,0.0];
     default float3: zero_vector = vec![0.0,0.0,0.0];
     default float3: ones_vector = vec![1.0,1.0,1.0];
@@ -83,8 +95,8 @@ impl float3 for float3 {
        let *mut Self : fi;
         return *fi;
     }
-    fn operator_add(float3: f, Self : f)-> float3 {
-        return  float3(x+f.x, y+f.y, z+f.z);
+    fn operator_add(float3: f, &self)-> float3 {
+        return  float3(x+self.x, y+self.y, z+self.z);
     }
     fn copy_into(f:[f64;3]) {
         let mut f:[f64;0] =x;
@@ -116,7 +128,7 @@ impl float3 for float3 {
         let float3 :y = mul_assign(f.y,y);
         let float3 :z = mul_assign(f.z,z);
     }
-    fn operator_muilt_equals (f64: f,Self : f)->*mut f {
+    fn operator_muilt_equals (f64: x, &mut self ,)->*mut f {
         let  x = mul_assign(f.x,x);
         let  y = mul_assign(f.y,y);
         let  z = mul_assign(f.z.z);
