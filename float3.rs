@@ -21,7 +21,7 @@
     x : f64,
     y : f64,
     z : f64,
-    f : f64,,
+    f : f64,
     f:[f64;3],
     f: float3,
     fwd_vector : float3,
@@ -88,12 +88,11 @@ impl float3 for float3 {
         let z=z(f[2]);
 
     }
-    fn operator_equ( f:[f64;3])-> float3 {
+    fn operator_equ(&mut self ,f:[f64;3])-> float3 {
        let float3: x =f[0];
        let float3: y =f[1];
        let float3: z =f[2];
-       let *mut Self : fi;
-        return *fi;
+        return *self;
     }
     fn operator_add(float3: f, &self)-> float3 {
         return  float3(x+self.x, y+self.y, z+self.z);
@@ -103,51 +102,51 @@ impl float3 for float3 {
         let mut f:[f64;1] =y;
         let mut f:[f64;2] =z;
     }
-    fn operator_add_equ(float3: f, Self : f)-> float3 {
-       let x = add_assign(f.x,x);
-       let y = add_assign(f.y,y);
-       let z = add_assign(f.z,z);
-       return f;
+    fn operator_add_equ(&mut self , other : pointer )-> float3 {
+       let x = add_assign(self.x,other.x);
+       let y = add_assign(self.y,other.y);
+       let z = add_assign(self.z,other.z);
+       return self;
     }
     fn operator_min (float3: f, Self : f) ->float3 {
-    return float3(x-f.x, y-f.y, z-f.z);
+    return float3(self.x-f, self.y-f, self.z-f);
     }
     fn operator_negative(f64: x,f64:  y,f64: z)->float3  {
         return float3(-x,-y,-z);
     }
-    fn operator_min_equ(float3: f,Self : f) {
-        let float3:  x = sub_assgin(f.x,y);
-        let float3:  y = sub_assign(f.y.y);
-        let float3:  z =sub_assign(f.z,z);
+    fn operator_min_equ(float3: f,&mut self) {
+        let float3:  x = sub_assgin(self.x,f);
+        let float3:  y = sub_assign(self.y.f);
+        let float3:  z =sub_assign(self.z,f);
     }
-    fn operator_muilt (float3: f,Self : f)->float3 {
-        return float3(x*f.x, y*f.y, z*f.z);
+    fn operator_muilt (float3: f, &mut self )->float3 {
+        return float3(self.x*f, self.y*f, self.z*f);
     }
-    fn operator_muilt_equal(float3: f,Self : f) {
-        let float3 :x = mul_assign(f.x,x);
-        let float3 :y = mul_assign(f.y,y);
-        let float3 :z = mul_assign(f.z,z);
+    fn operator_muilt_equal(float3: f, &mut self) {
+        let float3 :x = mul_assign(f,self.x);
+        let float3 :y = mul_assign(f,self.y);
+        let float3 :z = mul_assign(f,self.z);
     }
-    fn operator_muilt_equals (f64: x, &mut self ,)->*mut f {
-        let  x = mul_assign(f.x,x);
-        let  y = mul_assign(f.y,y);
-        let  z = mul_assign(f.z.z);
-        return *f;
+    fn operator_muilt_equals (f64: x, &mut self ,)->*mut self {
+        let  x = mul_assign(f,self.x);
+        let  y = mul_assign(f,self.y);
+        let  z = mul_assign(f.self.z);
+        return *self;
     }
-    fn operator_div (float3: f, self : f)->float3 {
-        return float3(x/f.x,y/f.y,z/f.z);
+    fn operator_div (float3: f, &mut self)->float3 {
+        return float3(self.x/f,self.y/f,self.z/f);
     }
-    fn operator_inver  (f64: f, Self : f)-> f64 {
-        const f64: inv = 1.0 /f;
-        return (*f) * inv;
+    fn operator_inver  (f64: f, &mut self)-> f64 {
+        const f64: inv = 1.0 /self;
+        return (*self) * inv;
     }
-    fn operator_divide_equa(float3: f,Self : f) {
-        let float3: x = div_assign(f.x,x);
-        let float3: y = div_assign(f.y,y); 
-        let float3: z = div_assign(f.z,z);
+    fn operator_divide_equa(float3: f,&mut self) {
+        let float3: x = div_assign(f,self.x);
+        let float3: y = div_assign(f,self.y); 
+        let float3: z = div_assign(f,self.z);
     }
-    fn operator_division_equal(f64 : f, self : f) {
-        const f64 :inv = 1.0 /f;
+    fn operator_division_equal(f64 : f, &mut self) {
+        const f64 :inv = 1.0 /self;
         *self *= inv;
     }
     fn operator_equ_equ(float3: f) -> bool {
@@ -164,34 +163,34 @@ impl float3 for float3 {
          type outflow = &x<a:[t;i64]>;
          return outflow;
     }
-    fn equals(float3:  f ,  float3 : eps, self : f)->bool  {
-       return epscmp(x.f.x,eps.x) && epscmp(y,f.y,eps.y) && epscmp(z, f.z,eps.z);
+    fn equals(float3:  f ,  float3 : eps,&mut  self)->bool  {
+       return epscmp(self.x.f,eps) && epscmp(self.y,f,eps) && epscmp(self.z,f,eps);
     }
-    fn same(float3: f, Self : f) -> bool {
-        return x == f.x && y == f.y && z ==f.z;
+    fn same(float3: f, &mut self) -> bool {
+        return self.x == f && self.y == f && self.z ==f;
     }
-    fn dot(float3 : f,Self : f) ->f64  {
-        return (x * f.x) + (y * f.y) + (z *f.z);
+    fn dot(float3 : f,&mut self) ->f64  {
+        return (self.x * f) + (self.y * f) + (self.z *f);
     }
-    fn dot_2d(float3: f, Self : f) {
-        return (x * f.x) + (y * f.y);
+    fn dot_2d(float3: f,&mut  self ) {
+        return (self.x * f) + (self.y * f.y);
     }
-    fn cross(float3: f, Self : f)->float3 {
+    fn cross(float3: f,&mut  self)->float3 {
         return float3[ f64
-            (y*f.z) - (z*f.y)
-            (z*f.x) - (x*f.z)
-            (x*f.y) - (y*f.z)];
+            (self.y*f) - (self.z*f)
+            (self.z*f) - (self.x*f)
+            (self.x*f) - (self.y*f)];
     }
-    fn distance(float3:  f, Self : f)->f64 {
-        let f64: dx=x - f.x;
-        let f64: dy=y - f.y;
-        let f64: dz=z - f.z;
+    fn distance(float3:  f,&mut  self)->f64 {
+        let f64: dx=self.x - f;
+        let f64: dy=self.y - f;
+        let f64: dz=self.z - f;
         let mut f64: dist=(dx*dx)+(dy*dy)+(dz*dz);
         return dist.sqrt();
     }
-    fn distance2d(float3 : f, self : f) ->f64 {
-        let f64: dx = x-f.x;
-        let f64: dy = y-f.y;
+    fn distance2d(float3 : f, &mut self) ->f64 {
+        let f64: dx = self.x-f;
+        let f64: dy = self.y-f;
         let mut f64: dist2 = (dx*dx+dy*dy);
         return dist2.sqrt();
     }
@@ -202,20 +201,20 @@ impl float3 for float3 {
     fn length_2d() {
         return sq_length_2d().sqrt();
     }
-    fn length_normalize(Self : f )-> f64 {
+    fn length_normalize(&mut self )-> f64 {
         const f64: len = length();
         if likely(len > nrm_eps())
         {
-            *f = mul_assign((1.0 / len), *f);
+            *self = mul_assign((1.0 / len), *self);
         }
         return len;
     }
-    fn length_nomralize_2d (Self : f ) -> f64{
+    fn length_nomralize_2d (&mut self) -> f64{
         let f64: len = length_2d();
         if likely(len > nrm_eps())
         {
             y =0.0; 
-             *f= mul_assign((1.0/len),*f);
+             *self= mul_assign((1.0/len),*self);
         }
         return len;
     }
@@ -234,21 +233,21 @@ impl float3 for float3 {
         let f64 : y =  0.0;
         return normalize();
     }
-    fn unsafe_normalize(Self : f)->*mut f {
-         *f = mult_assign(sq_length().sqrt(), *f);
-        return *f;
+    fn unsafe_normalize(&mut self)->*mut self {
+         *self = mult_assign(sq_length().sqrt(), *self);
+        return *self;
     }
     fn unsafe_normalize_2d() {
         let f64 : y = 0.0;
         return unsafe_normalize();
     }
-    fn safe_normalize(Self : f)-> *mut f {
+    fn safe_normalize(&mut self)-> *mut self {
         let f64: sql = sq_length();
         if  likely(sql>nrm_eps())
         {
-            *f = mul_assign(sql.sqrt(),*f);
+            *self = mul_assign(sql.sqrt(),*self);
         }
-        return *f;
+        return *self;
     }
     fn safe_normalize_2d() {
         let f64 : y = 0.0;
@@ -269,12 +268,12 @@ impl float3 for float3 {
         let f64 : y= 0.0 ;
         return a_nomralize();
     }
-    fn safe_a_normalize(Self : f)->*mut f {
+    fn safe_a_normalize(&mut self)->*mut self {
         const f64: sql = sq_length();
         if likely(sql > nrm_eps()){
-           *f =  mul_assign(sql.sqrt(),(*f));
+           *self =  mul_assign(sql.sqrt(),(*self));
         }
-        return *f;
+        return *self;
     }
     fn sq_length() ->f64  {
         return x*x +y*y+ z*z;
@@ -282,15 +281,15 @@ impl float3 for float3 {
     fn sq_length_2d()->f64 {
         return x*x + y*y;
     }
-    fn sq_distance(mut float3: f,self : f)->f64  {
-        let f64: dx = x-f.x;
-        let f64: dy = y-f.y;
-        let f64: dz = z-f.z;
+    fn sq_distance(float3: f,&mut self)->f64  {
+        let f64: dx = self.x-f;
+        let f64: dy = self.y-f;
+        let f64: dz = self.z-f;
         return dx*dx +dy*dy + dz*dz;
     }
     fn sq_distance_2d(mut float3: f, Self : f)-> f64  {
-        let f64: dx =x-f.x;
-        let f64: dy = y-f.y;
+        let f64: dx =self.x-f;
+        let f64: dy = self.y-f;
         return dx*dx + dy*dy;
     }
     fn assert_nans() {
