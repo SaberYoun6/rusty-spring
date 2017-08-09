@@ -7,7 +7,6 @@
  use std::env::*;
  use std::f64::consts;
  use core::f64::consts;
- use std::intrinsics::likely;
  use std::default::*;
  use std::ops::DivAssign;
  use std::ops::MulAssign;
@@ -17,45 +16,108 @@
  // contains a set of 3 number float.
  // usually used to represent a vector in space as x/y/z.
  //
- struct float3 {
+struct float3 {
     x : f64,
     y : f64,
     z : f64,
-    f : f64,
-    f:[f64;3],
-    f: float3,
-    fwd_vector : float3,
-    bot_vector : float3,
-    rght_vector : float3,
-    zero_vector : float3,
-    ones_vector : float3,
-    x_y_vector : float3,
-    x_z_vector : float3,
-    y_z_vector : float3,
-    t: i64 ,
  }
-impl float3 for float3 {
-    default float3: fwd_vector  = vec![0.0,0.0,1.0];
-    default float3: bot_vector  = vec![0.0,1.0,0.0];
-    default float3: rght_vector = vec![1.0,0.0,0.0];
-    default float3: zero_vector = vec![0.0,0.0,0.0];
-    default float3: ones_vector = vec![1.0,1.0,1.0];
-    default float3: x_y_vector  = vec![1.0,1.0,0.0];
-    default float3: x_z_vector  = vec![1.0,0.0,1.0];
-    default float3: y_z_vector  = vec![0.0,1.0,1.0];
-    default f64: float3_maxypos= -1.0;
-    default f64: float3_maxxpos= -1.0;
-    defualt  f64:x = 0.0;
-    defualt  f64:y = 0.0;
-    defualt  f64:z = 0.0;
-    fn is_in_bounds() -> bool {
-        assert!(float3_maxxpos > 0.0);
+impl float3{
+    fn origin() -> float3 {
+        float3 { x : 0.0, y: 0.0, z : 0.0 }
+    }
+    fn new(x : f64 ,y :f64 , z:f64) -> float3 {
+        float3 {x : x, y: y, z: z }
+    }
+}
+        
+struct float {
+    f : f64,
+}
+impl float {
+    fn origin() -> float{
+        float { f : 0.0 }
+    }
+    fn new ( f : f64) {
+        float{f :f }
+    }
+}
+struct float1{
+    f:[f64;3],
+}
+impl float1 {
+  fn origin() -> float1 {
+        float1 { f : 0.0  , f : 0.0  ,f : 0.0}
+  }
+  fn new (f:[f64;3]) ->float1 {
+      float1 { f : f , f : f , f :f }
+  }     
+}
+struct float2{
+    f: float3,
+}
+impl float2 {
+    fn origin() -> float2 {
+        float2 { f : 0.0 }
+    }
+    fn new ( f : float3) {
+        float2 { f : f }
+    } 
+}
+struct vector {
+    vectors : float3,
+}
+impl vector {
+   fn  origin_vector() -> float3 {
+       vector { vectors:0.0, vectors: 0.0,vectors : 0.0}
+   }
+   fn new_vector(vectors : float3) {
+       vector{ vectors : vectors, vectors : vectors, vectors : vectors }
+   }
+}
+struct int_float3{
+    t: i64 ,
+}
+impl int_float3 {
+    fn origin() -> int_float3 {
+        int_float3 { t : 0 }
+    }
+    fn new ( t : i64 ) -> int_float3 {
+        int_float3 { t : t}
+    }
+}
+struct float_maxxpos{
+    f64 : maxxpos,
+}
+impl float_maxxpos {
+    fn origin_maxxpos() -> float_maxxpos {
+        float_maxxpos { maxxpos : -1.0 }
+    }
+    fn new_maxxpos(maxxpos : f64)-> float_maxxpos{
+        float_maxxpos { maxxpos : maxxpos }
+    }
+}
+struct float_maxypos {
+    f64 : maxypos,
+}
+impl float_maxypos {
+    fn origin_maxypos() -> float_maxypos {
+        float_maxypos { maxypos : -1.0}
+    }
+    fn new_maxypos(maxypos : f64) ->float_maxypos{
+        float_maxypos{ maxypos : maxypos}
+    }
+}
+impl floati3 for float_maxxpos + float3 (x,y) + float_maxypos {
+    fn is_in_bounds() -> bool{
+        assert!(maxxpos > 0.0);
         return (x>= 0.0 && x <= maxxpos) && (y >= 0.0 &&  y <= maxypos);
     }
-    fn is_in_map() -> bool  {
-        assert!(float3_maxxpos >0.0);
-        return (x >= 0.0 && x <= maxxpos+1) && (y >= 0.0 && maxypos +1);
+    fn is_in_map() -> bool{
+        assert!(maxxpos > 0.0);
+        return (x >= 0.0 && x <= maxxpos+1) && (y >= 0.0 && y <= maxypos +1);
     }
+}
+    /*
     fn clamp_in_map() {
         assert!(float3_maxxpos > 0.0);
         let f64: x = clamp(x, 0.0, maxxpos+1);
@@ -84,7 +146,7 @@ impl float3 for float3 {
     }
     fn float3_a( f: [f64;3])  {
         let x=x(f[0]);
-        let y=y(f[1]);
+     let y=y(f[1]);
         let z=z(f[2]);
 
     }
@@ -297,27 +359,28 @@ impl float3 for float3 {
         assert!(!y.is_nan() && !y.is_infinite());
         assert!(!z.is_nan() && !z.is_infinite());
     }
-}
+    */
+
 fn main(){
-    let  maxxpos = -1.2;
+    let maxxpos1= float_maxxpos{-1.2};
     let min =float3::float3(1.345,4.5231,5.67902);
     let max =float3::float3(8.888,35.8913,10.9123);
     let x = 2.890;
     let y = 3.345;
     let z = 9.1235;
     let asert = float3::float3(x,y,z);
-    if float3::is_in_bounds() {
+    if maxxpos1.is_in_bounds() {
         println!("then this function is working");
     } else {
        println!("there is no results");
     }
-    if !(float3::is_in_map()) {
+    if !(maxxpos1.is_in_map()) {
 	println!("there was no results");
     } else {
     println!("there is a result");
     }
-        println!("{} is set to the float3", float3::sq_distance(asert,asert));
-        println!("{} is set to the float3", float3::sq_distance_2d(max,max));
+     //   println!("{} is set to the float3", float3::sq_distance(asert,asert));
+     //   println!("{} is set to the float3", float3::sq_distance_2d(max,max));
 }
 
     /*
