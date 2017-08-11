@@ -11,6 +11,8 @@
  use std::ops::MulAssign;
  use std::ops::AddAssign;
  use std::ops::SubAssign;
+ use core::cmp::PartialOrd;
+ use core::iter::Iterator;
  // float3 class
  // contains a set of 3 number float.
  // usually used to represent a vector in space as x/y/z.
@@ -114,23 +116,23 @@ struct floati3
 }
 
 impl floati3 {
-    fn is_in_bounds( float_maxxpos : maxxpos  , float_maxypos : maxypos,  x : f64 , y :f64) -> bool 
+    fn is_in_bounds(  maxxpos : f64 ,  maxypos : f64,  x : f64 , y :f64) -> bool 
     {
         let minx = 0.0;
-            assert!(maxxpos > minx, "maxx= {},minx = {}",maxxpos,xminx);
+            assert!(maxxpos > minx, "maxx= {:?},minx = {:?}",maxxpos,minx);
         return(x >= 0.0 && x <= maxxpos  ) && ( y >= 0.0 && y <= maxypos);
     }
 }
 
 
 fn main(){
-    let _float_maxxpos = float_maxxpos{maxxpos : -1.2};
-    let _float_maxypos = float_maxypos{maxypos :1.0};
+    let maxxpos =  -1.2;
+    let maxypos =   1.0;
     let x = 1.0987;
     let y = 2.9080;
     let z = 8.9123;
     let wxz=float3{x:x,y:y,z:z};
-    if floati3::is_in_bounds(_float_maxxpos, _float_maxypos, x, y) {
+    if floati3::is_in_bounds(maxxpos, maxypos, x, y) {
         println!("then this function is working");
     } else {
        println!("there is no results");
