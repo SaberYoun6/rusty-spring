@@ -4,6 +4,8 @@
 // use fastmath::*;
  //use win64::*
  extern crate core;
+ extern crate clamp;
+ use clamp::*;
  use std::env::*;
  use core::f64::consts;
  use std::default::*;
@@ -77,37 +79,37 @@ impl vector {
    }
 }
 */
-struct int_float3{
+struct intFloat3{
     t: i64 ,
 }
-impl int_float3 {
-    fn origin() -> int_float3 {
-        int_float3 { t : 0 }
+impl intFloat3 {
+    fn origin() -> intFloat3 {
+        intFloat3 { t : 0 }
     }
-    fn new ( t : i64 ) -> int_float3 {
-        int_float3 { t : t}
+    fn new ( t : i64 ) -> intFloat3 {
+        intFloat3 { t : t}
     }
 }
-struct float_maxxpos{
+struct floatMaxXPos{
    maxxpos : f64,
 }
-impl float_maxxpos {
-    fn origin_maxxpos() -> float_maxxpos {
-        float_maxxpos { maxxpos : -1.0 }
+impl floatMaxXPos {
+    fn origin_maxxpos() -> floatMaxXPos {
+        floatMaxXPos { maxxpos : -1.0 }
     }
-    fn new_maxxpos(maxxpos : f64)-> float_maxxpos{
-        float_maxxpos { maxxpos : maxxpos }
+    fn new_maxxpos(maxxpos : f64)-> floatMaxXPos{
+        floatMaxXPos { maxxpos : maxxpos }
     }
 }
-struct float_maxypos {
+struct floatMaxYPos {
     maxypos : f64,
 }
-impl float_maxypos {
-    fn origin_maxypos() -> float_maxypos {
-        float_maxypos { maxypos : -1.0}
+impl floatMaxYPos {
+    fn origin_maxypos() -> floatMaxYPos {
+        floatMaxYPos { maxypos : -1.0}
     }
-    fn new_maxypos(maxypos : f64) ->float_maxypos{
-        float_maxypos{ maxypos : maxypos}
+    fn new_maxypos(maxypos : f64) ->floatMaxYPos{
+        floatMaxYPos{ maxypos : maxypos}
     }
 }
 struct floati3
@@ -115,26 +117,48 @@ struct floati3
 
 }
 
-impl floati3 {
+impl floatI3 {
     fn is_in_bounds(  maxxpos : f64 ,  maxypos : f64,  x : f64 , y :f64) -> bool 
     {
         let minx = 0.0;
-            assert!(maxxpos > minx, "maxx= {:?},minx = {:?}",maxxpos,minx);
+        assert!(maxxpos > minx, "maxx= {:?},minx = {:?}",maxxpos,minx);
         return(x >= 0.0 && x <= maxxpos  ) && ( y >= 0.0 && y <= maxypos);
+    }
+    fn is_in_map( maxxpos : f64, maxypos: f64 , x:f64, y:f64) -> bool
+    {
+        let minx = 0.0;
+        assert!(maxxpos > minx , "maxxpos = {:?}, minx = {:?}", maxxpos, minx);
+         return(x >= 0.0 && x <= maxxpos) && ( y >= 0.0 && y <=maxypos);
+    }
+    fn clamp_in_bounds(maxxpos : f64, maxypos : f64, x : f64 ,y : f64) -> ()
+    {
+        let minx = 0.0;
+        assert!(maxxpos > minx, "maxxpos= {:?}, minx = {:?}", maxxpos, minx);
+
+        let x=clamp(x,minx,maxxpos);
+        let y=clamp(y,minx,maxypos);
     }
 }
 
 
 fn main(){
-    let maxxpos =  -1.2;
-    let maxypos =   1.0;
+    let maxxpos =   0.2;
+    let maxypos =   0.1;
     let x = 1.0987;
     let y = 2.9080;
     let z = 8.9123;
     let wxz=float3{x:x,y:y,z:z};
-    if floati3::is_in_bounds(maxxpos, maxypos, x, y) {
+     println!("{:?} i just want to see the result ", floatI3::clamp_in_bounds(maxxpos,maxypos,x,z));
+    if floatI3::is_in_bounds(maxxpos, maxypos, x, y) {
         println!("then this function is working");
     } else {
        println!("there is no results");
     }
+    if floatI3::is_in_map(maxypos , maxypos, x ,y) {
+        println!("I'm going to assume that this is also going to panic");
+        }
+        else {
+        println!(" nothing" );
+        }
+        
 }
