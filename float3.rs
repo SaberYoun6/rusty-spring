@@ -114,22 +114,23 @@ struct floati3
 }
 
 impl floati3 {
-    fn is_in_bounds( maxx : f64 , maxy : f64 ,  x : f64 , y :f64) -> bool 
+    fn is_in_bounds( float_maxxpos : maxxpos  , float_maxypos : maxypos,  x : f64 , y :f64) -> bool 
     {
-        assert!(maxx > 0.0);
-        return(x >= 0.0 && x <= maxx  ) && ( y >= 0.0 && y <= maxy);
+        let minx = 0.0;
+            assert!(maxxpos > minx, "maxx= {},minx = {}",maxxpos,xminx);
+        return(x >= 0.0 && x <= maxxpos  ) && ( y >= 0.0 && y <= maxypos);
     }
 }
 
 
 fn main(){
-    let &float_maxxpos : maxxpos1= float_maxxpos::new_maxxpos(-1.2);
-    let &float_maxypos :  maxypos1= float_maxypos::new_maxypos(1.0);
+    let _float_maxxpos = float_maxxpos{maxxpos : -1.2};
+    let _float_maxypos = float_maxypos{maxypos :1.0};
     let x = 1.0987;
     let y = 2.9080;
     let z = 8.9123;
-    let wxz=float3::new(x,y,z);
-    if floati3::is_in_bounds(maxxpos1, maxypos1, x, y) {
+    let wxz=float3{x:x,y:y,z:z};
+    if floati3::is_in_bounds(_float_maxxpos, _float_maxypos, x, y) {
         println!("then this function is working");
     } else {
        println!("there is no results");
