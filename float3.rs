@@ -4,7 +4,7 @@
 // use fastmath::*;
  //use win64::*
  extern crate core;
- extern crate clamp;
+ extern crate clamp2;
  use clamp::*;
  use std::env::*;
  use core::f64::consts;
@@ -94,7 +94,7 @@ struct floatMaxXPos{
    maxxpos : f64,
 }
 impl floatMaxXPos {
-    fn origin_maxxpos() -> floatMaxXPos {
+    fn defer_maxxpos() -> floatMaxXPos {
         floatMaxXPos { maxxpos : -1.0 }
     }
     fn new_maxxpos(maxxpos : f64)-> floatMaxXPos{
@@ -105,7 +105,7 @@ struct floatMaxYPos {
     maxypos : f64,
 }
 impl floatMaxYPos {
-    fn origin_maxypos() -> floatMaxYPos {
+    fn defer_maxypos() -> floatMaxYPos {
         floatMaxYPos { maxypos : -1.0}
     }
     fn new_maxypos(maxypos : f64) ->floatMaxYPos{
@@ -135,8 +135,8 @@ impl floatI3 {
         let minx = 0.0;
         assert!(maxxpos > minx, "maxxpos= {:?}, minx = {:?}", maxxpos, minx);
 
-        let x=clamp(x,minx,maxxpos);
-        let y=clamp(y,minx,maxypos);
+        let x=clamp2::clamp(x,minx,maxxpos);
+        let y=clamp2::clamp(y,minx,maxypos);
     }
 }
 
