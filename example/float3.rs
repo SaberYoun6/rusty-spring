@@ -5,7 +5,7 @@
  //use win64::*
  extern crate core;
  extern crate clamp2;
- use clamp::*;
+ use clamp2::*;
  use std::env::*;
  use core::f64::consts;
  use std::default::*;
@@ -148,7 +148,7 @@ fn main(){
     let y = 2.9080;
     let z = 8.9123;
     let wxz=float3{x:x,y:y,z:z};
-     println!("{:?} i just want to see the result ", floatI3::clamp_in_bounds(maxxpos,maxypos,x,z));
+     println!("{} i just want to see the result ", floatI3::clamp_in_bounds(maxxpos,maxypos,x,z));
     if floatI3::is_in_bounds(maxxpos, maxypos, x, y) {
         println!("then this function is working");
     } else {

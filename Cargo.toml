@@ -8,4 +8,4 @@ gl = "0.6.3"
 libc = "0.2.27"
 os_type ="2.0.0"
 rlibc = "1.0.0"
-clamp = "0.1.0"
+clamp2 = {path= "/home/theprymone/clamp2"}
