@@ -3,18 +3,9 @@
 // use rustreg_cond::*;
 // use fastmath::*;
  //use win64::*
- extern crate core;
- extern crate clamp2;
- use clamp2::*;
  use std::env::*;
- use core::f64::consts;
  use std::default::*;
- use std::ops::DivAssign;
- use std::ops::MulAssign;
- use std::ops::AddAssign;
- use std::ops::SubAssign;
- use core::cmp::PartialOrd;
- use core::iter::Iterator;
+ use std::fmt::Debug;
  // float3 class
  // contains a set of 3 number float.
  // usually used to represent a vector in space as x/y/z.
@@ -31,6 +22,17 @@ impl float3{
     fn new(x : f64 ,y : f64 , z : f64) -> float3 {
         float3 {x : x, y : y, z : z }
     }
+}
+
+fn clamp<T: PartialOrd + PartialEq + Debug + > ( v : T, lo : T, hi : T) -> T {   
+      assert!(hi != lo,"{:?} = hi, {:?} = low",hi,lo);
+	      if v < lo {
+			return  lo; 
+		  } else if hi < v {
+			  return  hi;
+		  } else {
+			return v;
+		  }
 }
  /*       
 struct floater {
@@ -112,7 +114,7 @@ impl floatMaxYPos {
         floatMaxYPos{ maxypos : maxypos}
     }
 }
-struct floati3
+struct floatI3
 {
 
 }
@@ -121,22 +123,22 @@ impl floatI3 {
     fn is_in_bounds(  maxxpos : f64 ,  maxypos : f64,  x : f64 , y :f64) -> bool 
     {
         let minx = 0.0;
-        assert!(maxxpos > minx, "maxx= {:?},minx = {:?}",maxxpos,minx);
+        assert!(maxxpos > minx, "maxx= {},minx = {}",maxxpos,minx);
         return(x >= 0.0 && x <= maxxpos  ) && ( y >= 0.0 && y <= maxypos);
     }
     fn is_in_map( maxxpos : f64, maxypos: f64 , x:f64, y:f64) -> bool
     {
         let minx = 0.0;
-        assert!(maxxpos > minx , "maxxpos = {:?}, minx = {:?}", maxxpos, minx);
+        assert!(maxxpos > minx , "maxxpos = {}, minx = {}", maxxpos, minx);
          return(x >= 0.0 && x <= maxxpos) && ( y >= 0.0 && y <=maxypos);
     }
     fn clamp_in_bounds(maxxpos : f64, maxypos : f64, x : f64 ,y : f64) -> ()
     {
         let minx = 0.0;
-        assert!(maxxpos > minx, "maxxpos= {:?}, minx = {:?}", maxxpos, minx);
+        assert!(maxxpos > minx, "maxxpos= {:?}, minx ={}", maxxpos, minx);
 
-        let x=clamp2::clamp(x,minx,maxxpos);
-        let y=clamp2::clamp(y,minx,maxypos);
+        let x=clamp(x,minx,maxxpos);
+        let y=clamp(y,minx,maxypos);
     }
 }
 
@@ -148,7 +150,7 @@ fn main(){
     let y = 2.9080;
     let z = 8.9123;
     let wxz=float3{x:x,y:y,z:z};
-     println!("{} i just want to see the result ", floatI3::clamp_in_bounds(maxxpos,maxypos,x,z));
+     println!(i just want to see the result ", floatI3::clamp_in_bounds(maxxpos,maxypos,x,z));
     if floatI3::is_in_bounds(maxxpos, maxypos, x, y) {
         println!("then this function is working");
     } else {
