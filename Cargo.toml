@@ -4,8 +4,10 @@ version = "0.1.0"
 authors = ["-- <samuel.young.103@gmail.com>"]
 
 [dependencies]
-gl = "0.6.3"
-libc = "0.2.27"
-os_type ="2.0.0"
+gl = "0.6"
+libc = "0.2"
+os_type ="2.2"
 rlibc = "1.0.0"
-clamp2 = {path= "/home/theprymone/clamp2"}
+vulkano = "0.11"
+winit = "0.18"
+vulkano-win= "0.11"
