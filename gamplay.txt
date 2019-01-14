@@ -1,0 +1,4 @@
+mechanism that need to be include, sleath, sheilds , radar jammer , real world desctrucion, pathfinding, damage, repairing scheme, unit healing, unit ranking system, control the camera, binding for keys, toxicity of materials, maps,weapon choice, taking over buildings, units, movement of units 
+features player one: two campagins difficult, 1,2,3 , the third is unlockable difficulty 1,2,3 , skrimish mode, load, # challenge mode, 
+muiltplayer : online; checks for updates, lobbies, rank game, find game, game lookup, create game, networking; create game,   join game, direct connection, back
+create games : player names , color, military, teams, games speed, starting cash, maps.
