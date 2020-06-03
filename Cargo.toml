@@ -1,13 +1,12 @@
 [package]
-name = "rusty-spring"
-version = "0.1.0"
-authors = ["-- <samuel.young.103@gmail.com>"]
+name = "rusty-spring "
+version = "0.0.1"
+authors = ["moonLightFires"]
+edition = "2018"
 
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-gl = "0.6"
-libc = "0.2"
-os_type ="2.2"
-rlibc = "1.0.0"
-vulkano = "0.11"
-winit = "0.18"
-vulkano-win= "0.11"
+[dependencies.amethyst]
+version = "0.15"
+default-features = true
+features= ["vulkan"]
